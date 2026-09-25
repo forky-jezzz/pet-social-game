@@ -53,10 +53,11 @@ go run ./cmd/api -config configs/config.yaml
 
 ## 文档
 
-- [架构](docs/architecture.md)
+- [MVP 方案 B：范围 / 决策 / 计划变更](docs/mvp-plan.md)
+- [架构总览](docs/architecture.md)
 - [HTTP API](docs/api.md)
 - [WebSocket 协议](docs/ws-protocol.md)
 
 ## 二期（未做）
 
-晒图广场、投票榜、OSS、Spine 正式换装、商城支付。
+晒图广场、投票榜、OSS、Spine 正式换装、商城支付。详见 [docs/mvp-plan.md](docs/mvp-plan.md)。
