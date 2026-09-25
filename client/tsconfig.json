@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "ES2015",
+    "lib": ["ES2015", "DOM"],
+    "target": "ES2015",
+    "strict": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "outDir": "./temp",
+    "rootDir": "./assets/scripts",
+    "types": []
+  },
+  "include": ["./assets/scripts/**/*.ts"]
+}

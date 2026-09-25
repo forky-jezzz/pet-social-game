@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+server/bin/
+/tmp/
+*.exe
+.idea/
+.vscode/
+client/library/
+client/temp/
+client/local/
+client/build/
+client/profiles/

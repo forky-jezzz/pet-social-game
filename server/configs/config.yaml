@@ -1,0 +1,26 @@
+server:
+  addr: ":8080"
+  mode: debug # debug|release
+
+jwt:
+  secret: "pet-social-dev-secret-change-me"
+  expire_hours: 168
+
+mysql:
+  dsn: "pet:pet123@tcp(127.0.0.1:3306)/pet_social?charset=utf8mb4&parseTime=True&loc=Local"
+
+redis:
+  addr: "127.0.0.1:6379"
+  password: ""
+  db: 0
+
+security:
+  provider: mock # mock|alipay
+  alipay:
+    app_id: ""
+    private_key: ""
+    alipay_public_key: ""
+    gateway: "https://openapi.alipay.com/gateway.do"
+
+auth:
+  allow_dev_login: true

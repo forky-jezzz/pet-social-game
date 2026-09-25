@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>宠物社交 · 试玩</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="bg"></div>
+  <main class="shell">
+    <header class="top">
+      <div class="brand">
+        <span class="paw">🐾</span>
+        <div>
+          <h1>宠物社交</h1>
+          <p class="sub">一期试玩 · 喂养 / 换装 / 串门 / 聊天</p>
+        </div>
+      </div>
+      <div id="userChip" class="chip hidden"></div>
+    </header>
+
+    <!-- Login -->
+    <section id="viewLogin" class="card">
+      <h2>进入家园</h2>
+      <p class="hint">开发登录：任意账号码即可开号，双开两个浏览器窗口可互加好友、串门、私聊。</p>
+      <label>账号码 <input id="codeInput" placeholder="例如 alice" value="alice" /></label>
+      <label>昵称 <input id="nickInput" placeholder="显示名" value="Alice" /></label>
+      <button id="btnLogin" class="primary">开始试玩</button>
+      <p id="loginErr" class="err"></p>
+    </section>
+
+    <!-- Home -->
+    <section id="viewHome" class="hidden">
+      <div class="grid">
+        <article class="card pet-stage">
+          <div id="petVisual" class="pet-visual" data-hat="hat_basic" data-clothes="clothes_basic">
+            <div class="pet-body">🐱</div>
+            <div class="hat-layer"></div>
+            <div class="cape-layer"></div>
+          </div>
+          <h2 id="petName">—</h2>
+          <div class="bars">
+            <div><span>饱食</span><div class="bar"><i id="barHunger"></i></div><b id="txtHunger">0</b></div>
+            <div><span>心情</span><div class="bar mood"><i id="barMood"></i></div><b id="txtMood">0</b></div>
+          </div>
+          <p class="level" id="petLevel">Lv.1</p>
+          <div class="row">
+            <button id="btnFeed">喂狗粮</button>
+            <button id="btnTreat">喂零食</button>
+          </div>
+          <div class="row">
+            <button id="btnHat">换星星帽</button>
+            <button id="btnCape">换小披风</button>
+          </div>
+          <p id="homeMsg" class="msg"></p>
+        </article>
+
+        <article class="card">
+          <h2>世界聊天</h2>
+          <div id="chatLog" class="chat-log"></div>
+          <div class="row">
+            <input id="chatInput" placeholder="说点什么…" maxlength="200" />
+            <button id="btnSendWorld" class="primary">发送</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>好友</h2>
+          <p class="hint">对方 userId 可在对方窗口顶部芯片查看。</p>
+          <div class="row">
+            <input id="friendIdInput" type="number" placeholder="对方 userId" />
+            <button id="btnReqFriend">申请</button>
+            <button id="btnAcceptFriend">接受</button>
+          </div>
+          <ul id="friendList" class="list"></ul>
+        </article>
+
+        <article class="card">
+          <h2>串门</h2>
+          <div class="row">
+            <input id="visitIdInput" type="number" placeholder="宿主 userId" />
+            <button id="btnVisit">前往</button>
+          </div>
+          <div id="visitInfo" class="visit-box">输入好友 ID 去串门</div>
+          <div class="row">
+            <button id="btnVisitPet" disabled>抚摸</button>
+            <button id="btnVisitGift" disabled>送礼</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>好友私聊</h2>
+          <div class="row">
+            <input id="dmPeerInput" type="number" placeholder="好友 userId" />
+            <button id="btnLoadDm">加载记录</button>
+          </div>
+          <div id="dmLog" class="chat-log"></div>
+          <div class="row">
+            <input id="dmInput" placeholder="私聊内容…" maxlength="200" />
+            <button id="btnSendDm" class="primary">私聊发送</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
