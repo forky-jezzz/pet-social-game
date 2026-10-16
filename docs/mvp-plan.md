@@ -16,14 +16,20 @@
 | 文本内容安全 | `alipay.security.risk.content.detect`；开发 mock | Mock 默认；Alipay 骨架 |
 | HTTP API + MySQL + Redis | 持久化 / 缓存 / 在线状态 / 锁 / PubSub | 已实现 |
 | 浏览器试玩页 | `/play/` 不依赖 Cocos，一期可玩 | 已实现（计划增补） |
+| 动森气质室内 2.5D + Design System | 奶油/燕麦/淡橘色板；贴纸 UI；家园/串门/社交三场景 | 设计正稿已定；见 art-direction + refs/scene-*.png |
+| Spine 微动 | 呼吸/眨眼/摇尾/表情；换装 | PetActor 已落地；美术资源待导入 |
 
-### 明确不做（二期）
+### 明确不做 / 分期
 
-- 晒图广场
-- 投票榜
-- OSS 上传
-- Spine 正式资源管线
+**服务端仍分期（设计已定稿，可先做 UI 壳）**
+
+- 晒图广场瀑布流 + OSS 上传（设计场景 3）
+- 留言墙 / 特产交换完整经济（设计场景 2）
 - 商城支付
+
+**一期可玩优先**：家园 2.5D + Spine + 喂养/换装/串门基础 + 聊天抽屉；拍照本地拍立得预览可先做。
+
+> 视觉以 [art-direction.md](./art-direction.md) Design System 为准。
 
 ---
 
@@ -32,7 +38,8 @@
 **客户端**
 
 - 引擎：Cocos Creator 3.8+（TypeScript）
-- UI & 动画：Cocos GUI + Spine（二期正式接入；一期占位）
+- UI & 动画：Cocos GUI + **Spine 2D**；贴纸风大圆角 UI；Q 弹反馈
+- 视觉：Design System 奶油/燕麦/淡橘 + 2.5D 室内家园（见 [art-direction.md](./art-direction.md)）
 - 网络：HTTP/HTTPS + WebSocket
 - 适配：支付宝 | 微信小游戏
 - 联调：`play/` 静态页（同域托管）
@@ -153,6 +160,12 @@ flowchart TB
 | 2026-09-25 | 增补 `play/` 浏览器试玩页，并由 API 托管 `/play/` | 无 Cocos 时也能端到端试玩社交与养成 |
 | 2026-09-25 | 主文档拆分为 mvp-plan / architecture / api / ws | 范围与架构、协议分离，便于后续改计划只改本文 |
 | 2026-09-25 | 推送 GitHub `forky-jezzz/pet-social-game` | 版本管理与协作 |
+| 2026-09-25 | 视觉定为 **2D 温馨小家 / 旅行青蛙气质**；参考养成手游布局但不抄海岛农场风 | 用户确认画风；详见 [art-direction.md](./art-direction.md) |
+| 2026-09-25 | 画风改为 **日系手绘像素**；一期加入 Spine 呼吸/眨眼/摇尾与表情动作 | 用户确认；规范见 [spine-pet.md](./spine-pet.md)，脚本 `PetActor` |
+| 2026-09-25 | 氛围对齐 **《我的花园世界》** 温馨室内小动物家居；手法仍为手绘像素、禁止抄素材 | 用户提供参考图；更新 [art-direction.md](./art-direction.md) |
+| 2026-09-25 | 否定粗像素示意；改为 **女性向粉彩柔美花园庭院**（参考用户花园图气质，不抄） | 新示意 `docs/refs/pet-feminine-garden-reference.png` |
+| 2026-09-25 | **推翻前序示意图**；视觉改为直接参考 **《动物森友会》** 2D 温馨生活气质（不抄 IP） | 删除旧 refs；新示意 `docs/refs/pet-acnh-inspired-reference.png` |
+| 2026-09-25 | 落地完整 **Design System**：色板/贴纸 UI/三场景（家园·串门·社交）；删除旧庭院示意；产出 scene-01/02/03 | 用户规范；[art-direction.md](./art-direction.md) |
 
 后续若调整范围（例如提前做晒图），请在本表追加一行，并同步更新「目标范围」表格状态列。
 
@@ -176,3 +189,7 @@ flowchart TB
 - [x] 敏感词 mock 拦截 `chat.rejected`
 - [x] 浏览器打开 `/play/` 可完成上述流程
 - [x] Cocos 脚本与平台适配骨架齐全（场景绑定需 Creator）
+- [x] Design System + 三场景示意 `docs/refs/scene-0{1,2,3}-*.png`
+- [x] Spine 微动规范与 `PetActor`
+- [ ] Creator 按 art-direction 搭建 MainRoom / Visit / SocialHub
+- [ ] 晒图 OSS + 广场 API（设计已定，服务端分期）

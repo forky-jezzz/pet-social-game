@@ -55,6 +55,11 @@ go run ./cmd/api -config configs/config.yaml
 
 - [MVP 方案 B：范围 / 决策 / 计划变更](docs/mvp-plan.md)
 - [架构总览](docs/architecture.md)
+- [视觉 Design System（家园/串门/社交）](docs/art-direction.md)
+  - [场景1 家园](docs/refs/scene-01-main-room.png)
+  - [场景2 串门](docs/refs/scene-02-visiting.png)
+  - [场景3 社交](docs/refs/scene-03-social-hub.png)
+- [宠物 Spine 动作规范](docs/spine-pet.md)
 - [HTTP API](docs/api.md)
 - [WebSocket 协议](docs/ws-protocol.md)
 

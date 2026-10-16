@@ -1,37 +1,41 @@
-# Pet Social Game Client (Cocos Creator 3.8+)
+# Cocos Creator 场景绑定（对齐 Design System）
+
+见上级 [docs/art-direction.md](../docs/art-direction.md)。
 
 ## Open in Creator
 
-1. Install [Cocos Creator 3.8+](https://www.cocos.com/creator-download)
-2. Dashboard → Open → select this `client/` folder (or create a blank 3.8 project and copy `assets/scripts/` in)
-3. Creator will generate `.meta` files automatically
+1. Install Cocos Creator 3.8+
+2. Open `client/`（或新建 3.8 工程后拷入 `assets/scripts/`）
+3. 按示意搭建三个场景：`MainRoom` / `VisitRoom` / `SocialHub`
 
-## Scene binding (Main.scene)
+## MainRoom 节点
 
-Create a simple UI and attach scripts:
+| 节点 | 组件 | 说明 |
+|------|------|------|
+| RoomRoot | — | 地板/墙/窗光/家具分层 |
+| PetHost | `sp.Skeleton` + `PetActor` | 中心宠 |
+| HUD_TopLeft | — | 头像、宠名、心情/饥饿胶囊 |
+| HUD_TopRight | — | 信件、背包、设置 |
+| HUD_SideRight | — | 聊天入口、晒图入口 |
+| BottomActions | — | 喂养/换装/串门/拍照 |
+| FeedSheet / WardrobeDrawer / VisitSheet | 面板脚本 | 滑动菜单、衣柜抽屉、串门选项 |
+| HomePanel | `HomePanel` | 绑定 labels + petActor |
 
-| Node | Component | Bindings |
-|------|-----------|----------|
-| Canvas | `GameBootstrap` | — |
-| LoginPanel | `LoginPanel` | statusLabel, homeRoot → HomePanel node |
-| HomePanel | `HomePanel` | petNameLabel, statsLabel, outfitLabel; Button click → onClickFeed / Treat / Outfit* |
-| ChatPanel | `ChatPanel` | logLabel, inputBox, peerIdBox |
-| FriendsPanel | `FriendsPanel` | listLabel, friendIdBox |
-| VisitPanel | `VisitPanel` | hostIdBox, infoLabel |
+## VisitRoom
 
-Buttons call the corresponding `onClick*` methods via Click Events.
+- 顶栏「XX 的家」+ 加好友/赞  
+- PetHost + PetGuest 双 Spine  
+- 打扫 / 帮喂食 / 留言 / 特产交换面板  
 
-## Config
+## SocialHub
 
-Edit `assets/scripts/config/GameConfig.ts`:
+- PhotoWall 双列瀑布流  
+- ChatDrawer 半透明上滑抽屉（复用 `ChatManager`）  
 
-- `apiBase` / `wsBase` → your server
-- `platform`: `auto` | `alipay` | `wechat` | `dev`
+## 配置
 
-## Dev login
-
-Without Alipay/WeChat SDK, set `platform: 'dev'`. Server must have `auth.allow_dev_login: true`.
+`assets/scripts/config/GameConfig.ts`：`apiBase` / `wsBase` / `platform`
 
 ## Spine
 
-Reserve a child node under the pet sprite named `SpineRoot` for future Spine skins; MVP uses Label stats only.
+资源目录 `assets/spine/pet/`，动画名见 [docs/spine-pet.md](../docs/spine-pet.md)。

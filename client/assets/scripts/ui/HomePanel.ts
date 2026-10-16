@@ -1,6 +1,7 @@
 import { _decorator, Component, Label } from 'cc';
 import { authManager } from '../managers/AuthManager';
 import { petManager } from '../managers/PetManager';
+import { PetActor } from '../pet/PetActor';
 
 const { ccclass, property } = _decorator;
 
@@ -14,6 +15,9 @@ export class HomePanel extends Component {
 
     @property(Label)
     outfitLabel: Label | null = null;
+
+    @property(PetActor)
+    petActor: PetActor | null = null;
 
     onEnable() {
         this.refresh();
@@ -29,10 +33,13 @@ export class HomePanel extends Component {
         this.setStats(`Lv.${pet.level}  饱食 ${pet.hunger}  心情 ${pet.mood}`);
         const outfit = petManager.parseOutfit(pet);
         if (this.outfitLabel) this.outfitLabel.string = `帽:${outfit.hat} 衣:${outfit.clothes}`;
+        this.petActor?.applyStats(pet.hunger, pet.mood);
+        this.petActor?.applyOutfit(outfit.hat, outfit.clothes);
     }
 
     async onClickFeed() {
         try {
+            this.petActor?.playEat();
             await petManager.feed('food_kibble');
             this.refresh();
         } catch (e) {
@@ -42,6 +49,7 @@ export class HomePanel extends Component {
 
     async onClickTreat() {
         try {
+            this.petActor?.playEat(() => this.petActor?.playHappy());
             await petManager.feed('food_treat');
             this.refresh();
         } catch (e) {
@@ -53,6 +61,7 @@ export class HomePanel extends Component {
         try {
             await petManager.outfit('hat_star');
             this.refresh();
+            this.petActor?.playHappy();
         } catch (e) {
             console.error(e);
         }
@@ -62,6 +71,7 @@ export class HomePanel extends Component {
         try {
             await petManager.outfit(undefined, 'clothes_cape');
             this.refresh();
+            this.petActor?.playHappy();
         } catch (e) {
             console.error(e);
         }
